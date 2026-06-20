@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initMobileMenu();
   initScrollPerformance();
   initHeroCanvas();
   initTicketsTilt();
@@ -36,6 +37,48 @@ function initNavbar() {
   // Run once on load, then attach listener
   handleScroll();
   window.addEventListener('scroll', handleScroll, { passive: true });
+}
+
+/* --------------------------------------------------------------------------
+   1.5. Mobile Hamburger Drawer Menu
+   -------------------------------------------------------------------------- */
+function initMobileMenu() {
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+
+  if (!hamburgerBtn || !mobileMenu) return;
+
+  const toggleMenu = () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  const openMenu = () => {
+    hamburgerBtn.classList.add('active');
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Prevent scroll under drawer
+  };
+
+  const closeMenu = () => {
+    hamburgerBtn.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener('click', closeMenu);
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -380,6 +423,40 @@ function initHeroCanvas() {
     targetMouseY = -1000;
   });
 
+  // Track touch movement for mobile devices
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      const y = touch.clientY - rect.top;
+      
+      if (x >= 0 && x <= width && y >= 0 && y <= height) {
+        targetMouseX = x;
+        targetMouseY = y;
+      }
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      const y = touch.clientY - rect.top;
+      
+      if (x >= 0 && x <= width && y >= 0 && y <= height) {
+        targetMouseX = x;
+        targetMouseY = y;
+      }
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    targetMouseX = -1000;
+    targetMouseY = -1000;
+  });
+
   // Smooth lerp and rendering loop
   function draw() {
     // 1. Lerp Sphere 1 (Big, follows cursor directly)
@@ -434,8 +511,8 @@ function initHeroCanvas() {
 
     ctx.clearRect(0, 0, width, height);
 
-    // 3. Render the static background text
-    ctx.drawImage(textCanvas, 0, 0, width, height, 0, 0, width, height);
+    // 3. Render the static background text (using physical bounds to fix DPR bug)
+    ctx.drawImage(textCanvas, 0, 0, width * dpr, height * dpr, 0, 0, width, height);
 
     // 4. Perform spherical distortion lookup and draw the 3 spheres
     // Medium and Small spheres always render and drift autonomously

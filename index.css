@@ -240,6 +240,116 @@ button {
   transform-origin: left;
 }
 
+/* Hamburger Button */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1010;
+  padding: 0;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-color);
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+
+/* Mobile Drawer Overlay & Content */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  visibility: hidden;
+  transition: visibility var(--transition-smooth);
+}
+
+.mobile-menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(9, 9, 9, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.mobile-menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 320px;
+  height: 100%;
+  background: rgba(14, 14, 16, 0.75);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-left: 1px solid var(--border-color);
+  padding: 8rem 2.5rem 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translate3d(100%, 0, 0);
+  transition: transform var(--transition-smooth);
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.mobile-menu-link {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.mobile-menu-link:hover {
+  color: var(--text-color);
+  transform: translateX(4px);
+}
+
+/* Open State classes */
+.mobile-menu.open {
+  visibility: visible;
+}
+
+.mobile-menu.open .mobile-menu-overlay {
+  opacity: 1;
+}
+
+.mobile-menu.open .mobile-menu-content {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Hamburger Active State */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 /* --------------------------------------------------------------------------
    4. Hero Section & Spline Integration
    -------------------------------------------------------------------------- */
@@ -1223,46 +1333,89 @@ body.is-scrolling .spline-iframe {
 @media (max-width: 768px) {
   .navbar-container {
     padding: 1.25rem 1.5rem;
+    justify-content: space-between; /* Space logo and hamburger */
+    gap: 0;
   }
   .nav-links {
-    gap: 1.5rem;
+    display: none; /* Hide desktop nav links */
+  }
+  .hamburger-btn {
+    display: flex; /* Show hamburger button */
   }
   .logo span {
     font-size: 1.1rem;
   }
 
+  /* Responsive tickets section */
   .tickets-wrapper {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: calc(1.5rem * var(--tear-progress, 0)); /* Seam gap in column layout */
   }
-  .pass-card, .barcode-card {
+  .pass-card {
     width: 100%;
     max-width: 360px;
+    height: 230px;
+    border-radius: 16px 16px 0 0;
+    -webkit-mask-image: radial-gradient(circle at 50% 100%, transparent 8px, #000 9px);
+    mask-image: radial-gradient(circle at 50% 100%, transparent 8px, #000 9px);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+  .pass-card::before {
+    top: auto;
+    right: 12px;
+    left: 12px;
+    bottom: 0;
+    width: auto;
+    height: 2px;
+    border-left: none;
+    border-top: 2px dashed rgba(0, 0, 0, 0.22);
   }
   .barcode-card {
-    height: 160px;
+    width: 100%;
+    max-width: 360px;
+    height: 125px;
+    border-radius: 0 0 16px 16px;
+    -webkit-mask-image: radial-gradient(circle at 50% 0%, transparent 8px, #000 9px);
+    mask-image: radial-gradient(circle at 50% 0%, transparent 8px, #000 9px);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
   }
   .barcode-card .ticket-content {
-    flex-direction: row;
-    padding: 1.5rem;
-  }
-  .barcode-container {
-    height: 60px;
-    width: 60%;
-  }
-  .barcode-svg {
-    transform: rotate(-90deg);
-  }
-  .barcode-label {
-    border-top: none;
-    border-left: 1px dashed var(--ticket-border);
-    padding-top: 0;
-    padding-left: 1rem;
-    width: 40%;
+    padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .stub-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+  }
+  .stub-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.75rem;
+    color: var(--ticket-muted);
+  }
+  .barcode-wrapper {
+    width: 120px;
+    height: 50px;
+  }
+  .barcode-svg {
+    transform: none;
+    width: 100%;
+    height: 100%;
+    color: var(--ticket-text);
+  }
+  .barcode-number {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.75rem;
   }
 
   .gallery-grid {
@@ -1276,6 +1429,23 @@ body.is-scrolling .spline-iframe {
 
   /* Testimonials layout is horizontal marquee, responsive sizing is handled by clamp */
 
+  /* Marketing layout responsive adjustments */
+  .marketing-section .section-container {
+    gap: 4rem;
+    padding-top: 5rem;
+  }
+  .marketing-block {
+    gap: 1.5rem;
+  }
+
+  /* Accordion padding reduction */
+  .accordion-content-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  .accordion-header {
+    padding: 1.5rem 1.5rem;
+  }
+
   .footer-bottom {
     flex-direction: column;
     text-align: center;
@@ -1284,9 +1454,6 @@ body.is-scrolling .spline-iframe {
 }
 
 @media (max-width: 480px) {
-  .nav-links {
-    display: none; /* Hide nav links on very small mobile for clean aesthetic */
-  }
   .section-container, .section-container-wide {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
