@@ -1625,3 +1625,55 @@ body.is-scrolling .spline-iframe {
   line-height: 1.65;
 }
 
+/* --------------------------------------------------------------------------
+   13. Interactive Hand-Drawn Sketch Highlights (Underline, Circle)
+   -------------------------------------------------------------------------- */
+.sketch-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.circle-dec {
+  padding: 0.15em 0.35em;
+  margin: -0.15em -0.35em;
+}
+
+.sketch-svg {
+  position: absolute;
+  top: -8%;
+  left: -8%;
+  width: 116%;
+  height: 116%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.sketch-svg-underline {
+  position: absolute;
+  bottom: -6px;
+  left: -2%;
+  width: 104%;
+  height: 12px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.sketch-path {
+  fill: none;
+  stroke: var(--accent-color);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sketch-highlight.revealed .sketch-path {
+  stroke-dashoffset: 0;
+}
+

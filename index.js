@@ -227,7 +227,7 @@ function initGalleryFilter() {
    5. Scroll Reveal animations
    -------------------------------------------------------------------------- */
 function initScrollReveal() {
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const revealElements = document.querySelectorAll('.reveal-on-scroll, .sketch-highlight');
   
   if (revealElements.length === 0) return;
 
