@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saltea Studio | Design-Driven Storytelling</title>
+  <meta name="description" content="Saltea Studio is a creative design agency crafting high-quality visual experiences, brand identity, motion styling, and premium visual productions.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="#" class="logo" id="nav-logo">
+        <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        </svg>
+        <span>SALTEA STUDIO</span>
+      </a>
+      <div class="nav-links">
+        <a href="#work" class="nav-link" id="nav-services">Services</a>
+        <a href="#about" class="nav-link" id="nav-about">About us</a>
+        <a href="#contact" class="nav-link" id="nav-talk">Let's Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Spline 3D Distortion Typography -->
+  <section class="hero-section" id="hero">
+    <div class="spline-wrapper">
+      <!-- Canvas for native high-performance glass refraction typography distortion -->
+      <canvas id="hero-canvas"></canvas>
+      <div class="spline-shield"></div>
+    </div>
+    <!-- Cinematic top/bottom fade overlay -->
+    <div class="hero-fade-overlay"></div>
+  </section>
+
+  <!-- Ticket Passes Section -->
+  <section class="tickets-section" id="about">
+    <div class="section-container">
+      <div class="tickets-wrapper">
+        <!-- Access Pass Ticket -->
+        <div class="ticket-tilt-container ticket-left-tilt">
+          <div class="ticket-card pass-card" id="ticket-pass">
+            <div class="ticket-content">
+              <div class="ticket-header-group">
+                <div class="ticket-main-title">ACCESS PASS</div>
+                <div class="ticket-subtitle">TO VISUAL STORYTELLING</div>
+                <div class="ticket-author">BY SALTEA STUDIOS</div>
+              </div>
+              <div class="ticket-details-group">
+                <div class="ticket-admit">Admit 1</div>
+                <div class="ticket-entry">Standard entry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barcode Ticket Stub -->
+        <div class="ticket-tilt-container ticket-right-tilt">
+          <div class="ticket-card barcode-card" id="ticket-barcode">
+            <div class="ticket-content">
+              <div class="stub-container">
+                <span class="stub-text">INVALID ONCE TORN</span>
+                <div class="barcode-wrapper">
+                  <!-- Inline SVG Barcode for precise modern styling -->
+                  <svg class="barcode-svg" width="100" height="150" viewBox="0 0 100 150" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Barcode stripes -->
+                    <rect x="5" y="10" width="4" height="110"/>
+                    <rect x="12" y="10" width="2" height="110"/>
+                    <rect x="18" y="10" width="6" height="110"/>
+                    <rect x="27" y="10" width="1" height="110"/>
+                    <rect x="32" y="10" width="3" height="110"/>
+                    <rect x="38" y="10" width="5" height="110"/>
+                    <rect x="47" y="10" width="2" height="110"/>
+                    <rect x="52" y="10" width="7" height="110"/>
+                    <rect x="62" y="10" width="2" height="110"/>
+                    <rect x="67" y="10" width="4" height="110"/>
+                    <rect x="74" y="10" width="1" height="110"/>
+                    <rect x="78" y="10" width="5" height="110"/>
+                    <rect x="86" y="10" width="3" height="110"/>
+                    <rect x="92" y="10" width="4" height="110"/>
+                  </svg>
+                </div>
+                <span class="barcode-number">3061612530181</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Tags Section -->
+  <section class="mission-section" id="work">
+    <div class="section-container">
+      <div class="mission-text reveal-on-scroll">
+        <p class="mission-subtitle">Founded in a new era to craft high quality visual experiences.</p>
+        <h2 class="mission-title">Our designers work with <span class="muted-text block-text">a wide range of projects</span></h2>
+      </div>
+      
+      <!-- Interactive Tags -->
+      <div class="tags-container reveal-on-scroll">
+        <button class="tag-chip active" id="tag-all">Show All</button>
+        <button class="tag-chip" id="tag-brand">Brand & Identity</button>
+        <button class="tag-chip" id="tag-design">Design & Direction</button>
+        <button class="tag-chip" id="tag-motion">Motion Styling</button>
+        <button class="tag-chip" id="tag-photo">Photography & Videography</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Gallery Section -->
+  <section class="showcase-section" id="showcase">
+    <div class="section-container-wide">
+      <div class="gallery-grid">
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item reveal-on-scroll" data-category="brand">
+          <div class="gallery-image-wrapper">
+            <img src="/public/images/branding.png" alt="Saltea Studio Brand Identity Design" class="gallery-image" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-tag">BRAND & IDENTITY</span>
+              <h3 class="gallery-item-title">Editorial Identity</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item reveal-on-scroll" data-category="design motion">
+          <div class="gallery-image-wrapper">
+            <img src="/public/images/workspace.png" alt="Saltea Studio Motion Styling Workspace" class="gallery-image" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-tag">MOTION STYLING</span>
+              <h3 class="gallery-item-title">Creative Direction</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item reveal-on-scroll" data-category="photo">
+          <div class="gallery-image-wrapper">
+            <img src="/public/images/production.png" alt="Saltea Studio Photography Production" class="gallery-image" loading="lazy">
+            <div class="gallery-overlay">
+              <span class="gallery-tag">PHOTOGRAPHY & VIDEOGRAPHY</span>
+              <h3 class="gallery-item-title">Cinematic Visuals</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marketing Section -->
+  <section class="marketing-section reveal-on-scroll">
+    <!-- Canvas for interactive neural graph mesh background -->
+    <canvas id="marketing-canvas"></canvas>
+    
+    <div class="section-container">
+      <!-- Design Expertise Block -->
+      <div class="marketing-block block-expertise">
+        <h2 class="dual-title">Design expertise that <span class="muted-text">grows with your brand</span></h2>
+        <p class="marketing-subtitle">Your brand, crafted end to end through design, video, and content.</p>
+      </div>
+
+      <!-- Why Choose Us Block -->
+      <div class="marketing-block block-why-choose-us">
+        <h2 class="dual-title-inline">Why <span class="muted-text">choose us?</span></h2>
+        <div class="marketing-body-group">
+          <p class="marketing-desc-highlight">At Saltea, we combine premium quality, innovative design, and unmatched comfort to deliver a sleep experience that prioritizes your well-being.</p>
+          <p class="marketing-desc">Every product is crafted with precision, care, and commitment to excellence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="section-container">
+      <div class="testimonials-header reveal-on-scroll">
+        <h2 class="section-title">Discover what our clients say <span class="muted-text block-text">about working with us</span></h2>
+        <p class="section-subtitle">See feedback from brands that trust, experience, and value our services.</p>
+      </div>
+
+      <div class="testimonials-marquee-container reveal-on-scroll">
+        <div class="testimonials-marquee-track">
+          <!-- Group 1 -->
+          <div class="testimonials-marquee-group">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card" id="testimonial-card-1">
+              <p class="testimonial-text">"Saltea Studio was one of the best choices we made. They helped us define our visual language and voice - they helped us find our core identity."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #3a3a3a, #1a1a1a);">S</div>
+                <div class="author-info">
+                  <h4 class="author-name">Samantha Joy</h4>
+                  <p class="author-role">Brand Manager</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card" id="testimonial-card-2">
+              <p class="testimonial-text">"Their work with Saltea Studio is one of the best decisions we made. They didn't just deliver visuals, they helped define our brand soul across international channels."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #5a5a5a, #2a2a2a);">R</div>
+                <div class="author-info">
+                  <h4 class="author-name">Rahul Dutta</h4>
+                  <p class="author-role">Art Director</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card" id="testimonial-card-3">
+              <p class="testimonial-text">"Working with Saltea Studio was an absolute pleasure. They helped us translate complex interactive mockups into physical and digital products that feel premium and state of the art."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #7a7a7a, #3a3a3a);">E</div>
+                <div class="author-info">
+                  <h4 class="author-name">Elisa Johnson</h4>
+                  <p class="author-role">Marketing Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Group 2 (Duplicate for infinite seamless loop) -->
+          <div class="testimonials-marquee-group" aria-hidden="true">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Saltea Studio was one of the best choices we made. They helped us define our visual language and voice - they helped us find our core identity."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #3a3a3a, #1a1a1a);">S</div>
+                <div class="author-info">
+                  <h4 class="author-name">Samantha Joy</h4>
+                  <p class="author-role">Brand Manager</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Their work with Saltea Studio is one of the best decisions we made. They didn't just deliver visuals, they helped define our brand soul across international channels."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #5a5a5a, #2a2a2a);">R</div>
+                <div class="author-info">
+                  <h4 class="author-name">Rahul Dutta</h4>
+                  <p class="author-role">Art Director</p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Working with Saltea Studio was an absolute pleasure. They helped us translate complex interactive mockups into physical and digital products that feel premium and state of the art."</p>
+              <div class="testimonial-author">
+                <div class="author-avatar" style="background-image: linear-gradient(135deg, #7a7a7a, #3a3a3a);">E</div>
+                <div class="author-info">
+                  <h4 class="author-name">Elisa Johnson</h4>
+                  <p class="author-role">Marketing Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Accordion) -->
+  <section class="faq-section">
+    <div class="section-container">
+      <div class="faq-header reveal-on-scroll">
+        <h2 class="section-title">Frequently Asked <span class="muted-text">Questions</span></h2>
+        <p class="section-subtitle">Learn more about our process, collaborations, and studio details.</p>
+      </div>
+
+      <div class="faq-accordion-list reveal-on-scroll">
+        <!-- Accordion Item 1 -->
+        <div class="accordion-item" id="faq-item-1">
+          <button class="accordion-header" id="faq-btn-1">
+            <span>How long does a typical project take?</span>
+            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <p>On average, branding projects take 4-6 weeks, while web design projects can range from 8-12 weeks. We provide a detailed timeline and keep you informed throughout the project.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="accordion-item" id="faq-item-2">
+          <button class="accordion-header" id="faq-btn-2">
+            <span>How involved will I be in the process?</span>
+            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <p>We believe in close collaboration. You will be actively involved in the discovery and strategy phases, followed by regular reviews and sign-offs to ensure the creative direction aligns perfectly with your goals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 -->
+        <div class="accordion-item" id="faq-item-3">
+          <button class="accordion-header" id="faq-btn-3">
+            <span>Can you work with my existing brand?</span>
+            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <p>Absolutely! We can work with your existing brand elements or website, whether you're looking for a refresh, a complete redesign, or additional services like digital marketing and content creation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Footer Section -->
+  <footer class="footer-section" id="contact">
+    <!-- Canvas for native high-performance inward particle effect -->
+    <canvas id="contact-canvas"></canvas>
+    
+    <div class="section-container">
+      <div class="contact-area reveal-on-scroll">
+        <h2 class="contact-title" id="contact-heading">Contact <span class="muted-text">Us</span></h2>
+        <p class="contact-subtitle">Design-Driven. Story-Focused.</p>
+        <a href="mailto:hello@salteastudio.com" class="cta-button" id="btn-contact">Let's Talk</a>
+      </div>
+      
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="copyright">&copy; Saltea Studio 2026. All rights reserved.</p>
+        <p class="attribution">Made by Aashish</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/index.js"></script>
+</body>
+</html>
