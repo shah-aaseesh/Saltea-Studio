@@ -1352,15 +1352,28 @@ body.is-scrolling .spline-iframe {
     align-items: center;
     gap: calc(1.5rem * var(--tear-progress, 0)); /* Seam gap in column layout */
   }
+  .ticket-tilt-container {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+  }
+  .ticket-left-tilt {
+    animation: float-left-mobile 6s ease-in-out infinite;
+  }
+  .ticket-right-tilt {
+    animation: float-right-mobile 6s ease-in-out infinite 0.5s;
+  }
   .pass-card {
     width: 100%;
     max-width: 360px;
     height: 230px;
     border-radius: 16px 16px 0 0;
-    -webkit-mask-image: radial-gradient(circle at 50% 100%, transparent 8px, #000 9px);
-    mask-image: radial-gradient(circle at 50% 100%, transparent 8px, #000 9px);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
+    -webkit-mask-image: radial-gradient(circle at 50% 100%, transparent 6px, #000 7px);
+    mask-image: radial-gradient(circle at 50% 100%, transparent 6px, #000 7px);
+    -webkit-mask-size: 18px 100%;
+    mask-size: 18px 100%;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
   }
   .pass-card::before {
     top: auto;
@@ -1372,15 +1385,29 @@ body.is-scrolling .spline-iframe {
     border-left: none;
     border-top: 2px dashed rgba(0, 0, 0, 0.22);
   }
+  .pass-card .ticket-content {
+    padding: 1.5rem 1.8rem;
+  }
+  .ticket-main-title {
+    font-size: 1.5rem;
+  }
+  .ticket-subtitle,
+  .ticket-author,
+  .ticket-admit,
+  .ticket-entry {
+    font-size: 0.9rem;
+  }
   .barcode-card {
     width: 100%;
     max-width: 360px;
-    height: 125px;
+    height: 120px;
     border-radius: 0 0 16px 16px;
-    -webkit-mask-image: radial-gradient(circle at 50% 0%, transparent 8px, #000 9px);
-    mask-image: radial-gradient(circle at 50% 0%, transparent 8px, #000 9px);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
+    -webkit-mask-image: radial-gradient(circle at 50% 0%, transparent 6px, #000 7px);
+    mask-image: radial-gradient(circle at 50% 0%, transparent 6px, #000 7px);
+    -webkit-mask-size: 18px 100%;
+    mask-size: 18px 100%;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
   }
   .barcode-card .ticket-content {
     padding: 1rem 1.5rem;
@@ -1399,12 +1426,13 @@ body.is-scrolling .spline-iframe {
   .stub-text {
     writing-mode: horizontal-tb;
     transform: none;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
     color: var(--ticket-muted);
   }
   .barcode-wrapper {
-    width: 120px;
-    height: 50px;
+    width: 100px;
+    height: 45px;
   }
   .barcode-svg {
     transform: none;
@@ -1415,7 +1443,25 @@ body.is-scrolling .spline-iframe {
   .barcode-number {
     writing-mode: horizontal-tb;
     transform: none;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes float-left-mobile {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(-6px * var(--tear-progress, 0)));
+    }
+  }
+  @keyframes float-right-mobile {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(6px * var(--tear-progress, 0)));
+    }
   }
 
   .gallery-grid {
