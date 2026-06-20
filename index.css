@@ -1670,10 +1670,12 @@ body.is-scrolling .spline-iframe {
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.25));
-  transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.6s; /* Wait for parent reveal fade-in animation to complete */
 }
 
-.sketch-highlight.revealed .sketch-path {
+.sketch-highlight.revealed .sketch-path,
+.reveal-on-scroll.revealed .sketch-highlight .sketch-path {
   stroke-dashoffset: 0;
 }
 
