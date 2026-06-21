@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Saltea Studio</title>
+  <meta name="description" content="Learn about Saltea Studio, our design process, and our founder Satvika. We help brands bring their visions to reality with precision and creativity.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body class="about-page-body">
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+  </div>
+
+  <!-- Interactive gaseous background -->
+  <canvas id="about-bg-canvas" class="about-bg-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        </svg>
+        <span>SALTEA STUDIO</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#work" class="nav-link" id="nav-services">Services</a>
+        <a href="about.html" class="nav-link active" id="nav-about">About us</a>
+        <a href="index.html#contact" class="nav-link" id="nav-talk">Let's Talk</a>
+      </div>
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-links">
+        <a href="index.html#work" class="mobile-menu-link">Services</a>
+        <a href="about.html" class="mobile-menu-link">About us</a>
+        <a href="index.html#contact" class="mobile-menu-link">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Hero Title -->
+  <header class="about-hero section-container reveal-on-scroll">
+    <div class="about-logo-wrapper">
+      <div class="saltea-logo-large">
+        <div class="mask-reveal"><span class="reveal-item delay-1">SALTEA</span></div>
+        <div class="mask-reveal"><span class="reveal-item outline-text delay-2">STUDIO</span></div>
+      </div>
+    </div>
+    <h1 class="about-title mask-reveal"><span class="reveal-item delay-3">Welcome to Saltea</span></h1>
+    <p class="about-subtitle mask-reveal"><span class="reveal-item delay-4">Crafting premium digital experiences</span></p>
+  </header>
+
+  <!-- Intro Collage Section -->
+  <section class="about-intro-section section-container">
+    <div class="about-grid">
+      <!-- Left side: Collage of images -->
+      <div class="about-collage-container reveal-on-scroll">
+        <div class="collage-item collage-map">
+          <img src="/public/images/about_map.png" alt="Saltea Studio Layout Map Graphic" loading="lazy">
+        </div>
+        <div class="collage-item collage-booth">
+          <img src="/public/images/about_booth.png" alt="Saltea Studio Exhibition Booth Mockup" loading="lazy">
+        </div>
+      </div>
+      
+      <!-- Right side: Bio Paragraph and Cog -->
+      <div class="about-bio-container reveal-on-scroll">
+        <p class="bio-paragraph">
+          Design is more than just aesthetics – it's about solving problems and telling stories. At Saltea Studio, we help brands bring their vision to reality with precision and creativity. Our agency is built on the foundation of innovation, design, and delivering exceptional results. From branding to social media, we're here to elevate your brand and bring your ideas to life.
+        </p>
+        <p class="bio-services-lead">
+          That's why we offer a full range of services. Discover.
+        </p>
+        
+        <!-- Spinning Gear/Flower Icon -->
+        <div class="flower-icon-wrapper">
+          <div class="spinning-flower-icon">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M50 0C52.8 0 55 2.2 55 5V18.3C60.2 19.3 65.1 21.5 69.4 24.8L78.8 15.4C80.8 13.4 84 13.4 86 15.4C88 17.4 88 20.6 86 22.6L76.6 32C79.9 36.3 82.1 41.2 83.1 46.4H95C97.8 46.4 100 48.6 100 51.4C100 54.2 97.8 56.4 95 56.4H83.1C82.1 61.6 79.9 66.5 76.6 70.8L86 80.2C88 82.2 88 85.4 86 87.4C84 89.4 80.8 89.4 78.8 87.4L69.4 78C65.1 81.3 60.2 83.5 55 84.5V95C55 97.8 52.8 100 50 100C47.2 100 45 97.8 45 95V84.5C39.8 83.5 34.9 81.3 30.6 78L21.2 87.4C19.2 89.4 16 89.4 14 87.4C12 85.4 12 82.2 14 80.2L23.4 70.8C20.1 66.5 17.9 61.6 16.9 56.4H5C2.2 56.4 0 54.2 0 51.4C0 48.6 2.2 46.4 5 46.4H16.9C17.9 41.2 20.1 36.3 23.4 32L14 22.6C12 20.6 12 17.4 14 15.4C16 13.4 19.2 13.4 21.2 15.4L30.6 24.8C34.9 21.5 39.8 19.3 45 18.3V5C45 2.2 47.2 0 50 0ZM50 35C41.7 35 35 41.7 35 50C35 58.3 41.7 65 50 65C58.3 65 65 58.3 65 50C65 41.7 58.3 35 50 35Z" />
+            </svg>
+          </div>
+          <div class="vertical-connecting-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="about-timeline-section section-container">
+    <div class="timeline-header reveal-on-scroll">
+      <h2 class="timeline-main-title">
+        <div class="mask-reveal"><span class="reveal-item delay-1">FIRST, CONCEPT.</span></div>
+        <div class="mask-reveal"><span class="reveal-item delay-2">THEN, DESIGN.</span></div>
+      </h2>
+    </div>
+    
+    <div class="timeline-content-wrapper">
+      <!-- Animated Dotted SVG Path -->
+      <div class="timeline-path-svg-container">
+        <svg class="timeline-path-svg" viewBox="0 0 100 800" preserveAspectRatio="none" fill="none">
+          <defs>
+            <linearGradient id="timeline-orange-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ff7f32" />
+              <stop offset="50%" stop-color="#ff4500" />
+              <stop offset="100%" stop-color="#e65c00" />
+            </linearGradient>
+            <!-- Drop shadow glow filter for the timeline tracker node -->
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff5e00" flood-opacity="0.8" />
+              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#ffae00" flood-opacity="1" />
+            </filter>
+          </defs>
+          <!-- Main connecting path with gradient stroke -->
+          <path class="timeline-path-dotted" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="url(#timeline-orange-grad)" stroke-width="2" stroke-dasharray="6,8" stroke-linecap="round" />
+          <!-- Animated path tracker -->
+          <path class="timeline-path-fill" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="#ff5e00" stroke-width="3" stroke-linecap="round" />
+          <!-- Pulsing glow circle node riding along path -->
+          <circle class="timeline-glow-node" cx="-20" cy="-20" r="6" fill="#ff5e00" filter="url(#glow-filter)" />
+        </svg>
+      </div>
+
+      <!-- Timeline steps -->
+      <div class="timeline-steps">
+        <!-- Step 1: LEARN (Right) -->
+        <div class="timeline-step step-right reveal-on-scroll" id="step-learn">
+          <div class="timeline-card">
+            <span class="timeline-card-number">01</span>
+            <h3 class="timeline-card-title">LEARN</h3>
+            <p class="timeline-card-desc">We start by understanding your goals, audience, and needs.</p>
+          </div>
+        </div>
+
+        <!-- Step 2: PLAN (Left) -->
+        <div class="timeline-step step-left reveal-on-scroll" id="step-plan">
+          <div class="timeline-card">
+            <span class="timeline-card-number">02</span>
+            <h3 class="timeline-card-title">PLAN</h3>
+            <p class="timeline-card-desc">Next we create a detailed plan and strategy for your project.</p>
+          </div>
+        </div>
+
+        <!-- Step 3: DESIGN (Right) -->
+        <div class="timeline-step step-right reveal-on-scroll" id="step-design">
+          <div class="timeline-card">
+            <span class="timeline-card-number">03</span>
+            <h3 class="timeline-card-title">DESIGN</h3>
+            <p class="timeline-card-desc">We then craft beautiful, interactive concepts and layouts.</p>
+          </div>
+        </div>
+
+        <!-- Step 4: DELIVERY (Left) -->
+        <div class="timeline-step step-left reveal-on-scroll" id="step-delivery">
+          <div class="timeline-card">
+            <span class="timeline-card-number">04</span>
+            <h3 class="timeline-card-title">DELIVERY</h3>
+            <p class="timeline-card-desc">Finally, we deliver the final designs, files, and assets to you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Profile Section -->
+  <section class="about-founder-section section-container">
+    <div class="founder-grid">
+      <!-- Left side: Bio Text -->
+      <div class="founder-bio reveal-on-scroll">
+        <p class="founder-bio-text">
+          Saltea Studio is a creative space led by founder Satvika. Driven by a passion for design & storytelling, we bridge the gap between digital designs and tangible physical spaces. From 2D graphics to high-impact messaging, our goal is to deliver visuals that inspire, connect, and elevate brands globally.
+        </p>
+      </div>
+      
+      <!-- Right side: Founder ID badge -->
+      <div class="founder-badge-wrapper reveal-on-scroll">
+        <div class="id-badge-card" id="founder-id-card">
+          <!-- Clip / pin at top of badge -->
+          <div class="badge-clip"></div>
+          
+          <div class="badge-body">
+            <!-- Portrait picture -->
+            <div class="badge-photo-frame">
+              <img src="/public/images/founder_portrait.png" alt="Satvika - Founder of Saltea Studio" class="badge-portrait" loading="lazy">
+            </div>
+            
+            <!-- Signature area -->
+            <div class="badge-signature-section">
+              <div class="signature-font">Satvika</div>
+              <div class="badge-label">Founder & Creative Director</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA & Ending Section -->
+  <section class="about-cta-section reveal-on-scroll">
+    <div class="section-container">
+      <div class="cta-content">
+        <div class="cta-dots-divider"></div>
+        <p class="about-mission-quote">"At Saltea, our mission is to create stories that resonate with your audience and leave a lasting impression."</p>
+        <h2 class="about-cta-title">Let's make sure it <br><span class="italic-text">just clicks</span>.</h2>
+        <a href="mailto:hello@salteastudio.com" class="cta-button" id="btn-about-contact">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="about-footer">
+    <div class="section-container">
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; Saltea Studio 2026. All rights reserved.</p>
+        <p class="attribution">Made by Aashish</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/index.js"></script>
+</body>
+</html>

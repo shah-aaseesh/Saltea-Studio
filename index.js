@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMarketingCanvas();
   initSpotlightCards();
   initMagneticElements();
+  initFounderBadgeTilt();
+  initTimelineScrollDrawing();
+  initAboutBgCanvas();
+  initCollageParallax();
+  initCustomCursor();
 });
 
 /* --------------------------------------------------------------------------
@@ -931,7 +936,7 @@ function initContactCanvas() {
    8. Spotlight Card Hover Glare
    -------------------------------------------------------------------------- */
 function initSpotlightCards() {
-  const cards = document.querySelectorAll('.testimonial-card, .accordion-item');
+  const cards = document.querySelectorAll('.testimonial-card, .accordion-item, .timeline-card');
 
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -1036,4 +1041,279 @@ function initTicketTear() {
   // Set initial state
   handleScroll();
 }
+
+/* --------------------------------------------------------------------------
+   11. About Us: 3D ID Badge Card Tilt & Clip Gravity Pendulum Swing
+   -------------------------------------------------------------------------- */
+function initFounderBadgeTilt() {
+  const badge = document.getElementById('founder-id-card');
+  if (!badge) return;
+
+  const clip = badge.querySelector('.badge-clip');
+
+  badge.addEventListener('mousemove', (e) => {
+    const rect = badge.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((centerY - y) / centerY) * 15;
+    const rotateY = ((x - centerX) / centerX) * 15;
+    
+    badge.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    
+    // Swing the metal clip in the counter direction simulating hanging physics
+    if (clip) {
+      clip.style.transform = `translate3d(0, 0, 15px) rotateZ(${-rotateY * 0.45}deg)`;
+    }
+  });
+
+  badge.addEventListener('mouseleave', () => {
+    badge.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    if (clip) {
+      clip.style.transform = 'translate3d(0, 0, 15px) rotateZ(0deg)';
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   12. About Us: Timeline Scroll Drawn SVG Path & Glow Node Follower
+   -------------------------------------------------------------------------- */
+function initTimelineScrollDrawing() {
+  const path = document.querySelector('.timeline-path-fill');
+  const section = document.querySelector('.about-timeline-section');
+  const node = document.querySelector('.timeline-glow-node');
+  
+  if (!path || !section) return;
+
+  const pathLength = path.getTotalLength();
+  
+  path.style.strokeDasharray = pathLength;
+  path.style.strokeDashoffset = pathLength;
+
+  const drawPath = () => {
+    const rect = section.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    
+    const start = viewportHeight * 0.7;
+    const end = viewportHeight * 0.3;
+    
+    const totalHeight = rect.height;
+    const progress = (start - rect.top) / (totalHeight + start - end);
+    
+    const clampedProgress = Math.max(0, Math.min(1, progress));
+    
+    path.style.strokeDashoffset = pathLength - (clampedProgress * pathLength);
+
+    // Ride the pulsing glow node exactly at the scrolled tip of the path
+    if (node) {
+      const point = path.getPointAtLength(clampedProgress * pathLength);
+      node.setAttribute('cx', point.x);
+      node.setAttribute('cy', point.y);
+    }
+  };
+
+  window.addEventListener('scroll', drawPath, { passive: true });
+  window.addEventListener('resize', drawPath, { passive: true });
+  drawPath();
+}
+
+/* --------------------------------------------------------------------------
+   13. About Us: Interactive Gaseous Background Canvas (Floating Blobs)
+   -------------------------------------------------------------------------- */
+function initAboutBgCanvas() {
+  const canvas = document.getElementById('about-bg-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
+
+  let mouseX = -1000;
+  let mouseY = -1000;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    width = rect.width;
+    height = rect.height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.scale(dpr, dpr);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouseX = -1000;
+    mouseY = -1000;
+  });
+
+  // Soft colorful gas blobs
+  const blobs = [
+    {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: 0.15,
+      vy: 0.22,
+      r: 320,
+      color: 'rgba(255, 94, 0, 0.08)' // soft orange matching theme accent
+    },
+    {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: -0.22,
+      vy: 0.15,
+      r: 450,
+      color: 'rgba(80, 50, 255, 0.08)' // soft purple/blue matching premium dark theme
+    },
+    {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: 0.18,
+      vy: -0.18,
+      r: 380,
+      color: 'rgba(255, 30, 150, 0.07)' // soft magenta/pink glow
+    }
+  ];
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    blobs.forEach(blob => {
+      // Passive drift
+      blob.x += blob.vx;
+      blob.y += blob.vy;
+
+      // Wrap around bounds with smooth bounce
+      if (blob.x < -blob.r) blob.vx = Math.abs(blob.vx);
+      if (blob.x > width + blob.r) blob.vx = -Math.abs(blob.vx);
+      if (blob.y < -blob.r) blob.vy = Math.abs(blob.vy);
+      if (blob.y > height + blob.r) blob.vy = -Math.abs(blob.vy);
+
+      // React to cursor push force
+      if (mouseX !== -1000) {
+        const dx = blob.x - mouseX;
+        const dy = blob.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 400) {
+          const force = (400 - dist) * 0.04;
+          const angle = Math.atan2(dy, dx);
+          blob.x += Math.cos(angle) * force;
+          blob.y += Math.sin(angle) * force;
+        }
+      }
+
+      // Render radial gradient gaseous light
+      const gradient = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+      gradient.addColorStop(0, blob.color);
+      gradient.addColorStop(0.5, blob.color.replace(/[\d.]+\)$/, '0.04)'));
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  draw();
+}
+
+/* --------------------------------------------------------------------------
+   14. About Us: Image Collage Scroll Parallax
+   -------------------------------------------------------------------------- */
+function initCollageParallax() {
+  const container = document.querySelector('.about-collage-container');
+  if (!container) return;
+
+  const handleScroll = () => {
+    const rect = container.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    if (rect.top < viewportHeight && rect.bottom > 0) {
+      // Calculate delta relative to viewport height
+      const centerDiff = (rect.top + rect.height / 2) - (viewportHeight / 2);
+      container.style.setProperty('--collage-parallax', `${centerDiff * 0.15}px`);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+}
+
+/* --------------------------------------------------------------------------
+   15. About Us: Custom Magnetic Blend Cursor
+   -------------------------------------------------------------------------- */
+function initCustomCursor() {
+  const cursor = document.querySelector('.custom-cursor');
+  if (!cursor) return;
+
+  const dot = cursor.querySelector('.cursor-dot');
+  const circle = cursor.querySelector('.cursor-circle');
+
+  if (!dot || !circle) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let circleX = 0;
+  let circleY = 0;
+
+  // Track position immediately
+  window.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+  }, { passive: true });
+
+  // Hide/Show cursor when leaving/entering viewport window
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+  });
+
+  // Lerping render loop for smooth trailing ring
+  const updateCursor = () => {
+    dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
+
+    circleX += (targetX - circleX) * 0.16;
+    circleY += (targetY - circleY) * 0.16;
+    circle.style.transform = `translate3d(${circleX}px, ${circleY}px, 0) translate(-50%, -50%)`;
+
+    requestAnimationFrame(updateCursor);
+  };
+  
+  requestAnimationFrame(updateCursor);
+
+  // Setup scale-up snap hovered triggers
+  const hoverTargets = document.querySelectorAll(
+    'a, button, .tag-chip, .timeline-card, .collage-item, .id-badge-card, .spinning-flower-icon'
+  );
+
+  hoverTargets.forEach(target => {
+    target.addEventListener('mouseenter', () => {
+      cursor.classList.add('hovered');
+    });
+
+    target.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hovered');
+    });
+  });
+}
+
+
+
 
