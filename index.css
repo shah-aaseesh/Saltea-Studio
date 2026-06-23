@@ -136,6 +136,19 @@ button {
   max-width: 600px;
 }
 
+/* Accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --------------------------------------------------------------------------
    3. Navigation Bar
    -------------------------------------------------------------------------- */
@@ -231,11 +244,13 @@ button {
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: var(--text-color);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -319,8 +334,12 @@ button {
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
-.mobile-menu-link:hover {
+.mobile-menu-link:hover,
+.mobile-menu-link.active {
   color: var(--text-color);
+}
+
+.mobile-menu-link:hover {
   transform: translateX(4px);
 }
 
@@ -1287,6 +1306,24 @@ body.is-scrolling .spline-iframe {
   text-transform: uppercase;
 }
 
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--text-color);
+}
+
 /* --------------------------------------------------------------------------
    11. Reveal-on-Scroll Framework
    -------------------------------------------------------------------------- */
@@ -1690,8 +1727,8 @@ body.is-scrolling .spline-iframe {
 /* About Hero Header */
 .about-hero {
   text-align: center;
-  padding-top: clamp(8rem, 12vw, 11rem) !important;
-  padding-bottom: 2rem !important;
+  padding-top: clamp(8rem, 12vw, 11rem);
+  padding-bottom: 2rem;
 }
 
 .about-logo-wrapper {
@@ -1934,7 +1971,7 @@ body.is-scrolling .spline-iframe {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   transition: stroke-dashoffset 0.1s ease-out; /* Smooth follow-scroll */
-  filter: drop-shadow(0 0 5px rgba(255, 94, 0, 0.5));
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
 }
 
 .timeline-steps {
@@ -2008,7 +2045,7 @@ body.is-scrolling .spline-iframe {
   border-radius: 15px;
   background: radial-gradient(
     600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
-    rgba(255, 94, 0, 0.08),
+    rgba(255, 255, 255, 0.08),
     transparent 40%
   );
   opacity: 0;
@@ -2023,14 +2060,14 @@ body.is-scrolling .spline-iframe {
 
 .timeline-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 94, 0, 0.25);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 94, 0, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 .timeline-card-number {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: #ff5e00;
+  color: var(--accent-color);
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.6rem;
@@ -2179,7 +2216,7 @@ body.is-scrolling .spline-iframe {
 }
 
 .signature-font {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-heading);
   font-style: italic;
   font-weight: 600;
   font-size: 2.2rem;
@@ -2247,13 +2284,20 @@ body.is-scrolling .spline-iframe {
 }
 
 .about-cta-title .italic-text {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-heading);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .about-footer {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(226, 226, 232, 0.08) 0%, rgba(9, 9, 9, 0) 70%);
+  background-size: 100% 100%;
   padding-bottom: 4rem;
+  z-index: 2;
 }
 
 /* Background Canvas */
@@ -2316,72 +2360,426 @@ body.is-scrolling .spline-iframe {
 @keyframes glowNodePulse {
   from {
     r: 5.5px;
-    filter: drop-shadow(0 0 4px rgba(255, 94, 0, 0.7));
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
   }
   to {
     r: 7.8px;
-    filter: drop-shadow(0 0 10px rgba(255, 94, 0, 0.95)) drop-shadow(0 0 16px rgba(255, 174, 0, 0.7));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 16px rgba(200, 200, 220, 0.5));
   }
 }
 
-/* Custom Cursor Styles */
-.custom-cursor {
+
+/* ==========================================================================
+   16. Video Editing Page Specific Styles
+   ========================================================================== */
+.video-editing-page {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Video Hero Section */
+.video-hero {
+  padding-top: clamp(8rem, 12vw, 11rem);
+  padding-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.video-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.video-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-color);
+}
+
+.video-hero-subtitle {
+  display: block;
+  color: var(--text-color);
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  margin-top: 0.2rem;
+  letter-spacing: -0.02em;
+}
+
+.star-accent-wrapper {
+  padding-top: 1rem;
+  flex-shrink: 0;
+}
+
+.spinning-star-accent {
+  width: 46px;
+  height: 46px;
+  color: var(--text-color);
+  opacity: 0.85;
+  animation: rotateStar 25s linear infinite;
+}
+
+@keyframes rotateStar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.video-hero-desc {
+  max-width: 580px;
+  margin-top: 4.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.video-hero-desc p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--text-color);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Carousel Section */
+.video-carousel-section {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10rem 0 6rem 0; /* Expanded top padding to prevent hero description overlap */
+  z-index: 3;
+}
+
+.carousel-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  /* Padding so the center of the first/last card can reach the viewport center */
+  padding-left: calc(50vw - 150px);
+  padding-right: calc(50vw - 150px);
+  padding-top: 150px; /* Expand vertical scrollable area to prevent card clipping */
+  padding-bottom: 150px;
+  margin-top: -150px; /* Compensate layout flow */
+  margin-bottom: -150px;
+  scroll-snap-type: none; /* custom inertia / free scroll */
+  scroll-behavior: auto;
+  cursor: grab;
+  scrollbar-width: none; /* Hide standard Firefox scrollbar */
+  -ms-overflow-style: none; /* Hide IE scrollbar */
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none; /* Hide Chrome/Safari scrollbar */
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem; /* Consistent spacing between cards */
+}
+
+.carousel-card {
+  flex-shrink: 0;
+  width: 300px;
+  height: 450px;
+  border-radius: 20px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  position: relative;
+  will-change: transform, opacity;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  
+  /* Initial values, will be set by JS dynamically */
+  --card-translate-y: 0px;
+  --card-rotate-z: 0deg;
+  --card-rotate-y: 0deg;
+  --card-scale: 1;
+  --card-opacity: 0.7;
+
+  transform: perspective(1000px) translateY(var(--card-translate-y)) rotateY(var(--card-rotate-y)) rotateZ(var(--card-rotate-z)) scale(var(--card-scale));
+  opacity: var(--card-opacity);
+  transition: transform 0.12s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.2s ease, filter 0.2s ease;
+  user-select: none;
+}
+
+/* Dim other cards when a card is hovered to highlight active selection */
+.carousel-container:has(.carousel-card:hover) .carousel-card:not(:hover) {
+  opacity: 0.42 !important;
+  filter: grayscale(0.25) blur(1.5px);
+}
+
+/* Lift and highlight card on hover */
+.carousel-card:hover {
+  transform: perspective(1000px) translateY(calc(var(--card-translate-y) - 20px)) rotateY(var(--card-rotate-y)) rotateZ(var(--card-rotate-z)) scale(calc(var(--card-scale) * 1.06)) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease, filter 0.2s ease;
+}
+
+.carousel-card.active {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.carousel-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.play-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transform: scale(0.85);
+  transition: transform var(--transition-smooth), background var(--transition-fast);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.play-btn svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 2px; /* Visual centering */
+}
+
+.carousel-card:hover .play-btn {
+  transform: scale(1);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Info Grid Section */
+.video-info-section {
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+  position: relative;
+  z-index: 2;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 3.5rem;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+}
+
+.info-desc {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Call to Action Section */
+.video-cta-section {
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-outline-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.8);
+  color: transparent;
+  margin-bottom: 4rem;
+}
+
+.cta-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cta-question {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cta-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+/* Contrast Footer */
+.video-footer {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(226, 226, 232, 0.08) 0%, rgba(9, 9, 9, 0) 70%);
+  background-size: 100% 100%;
+  padding-bottom: 4rem;
+  color: var(--text-color);
+  z-index: 2;
+}
+
+/* Mobile Responsiveness for Video Editing Specific elements */
+@media (max-width: 768px) {
+  .video-hero-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .star-accent-wrapper {
+    padding-top: 0;
+  }
+  
+  .spinning-star-accent {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .video-hero-desc {
+    text-align: left;
+    margin-top: 3rem;
+  }
+  
+  .carousel-container {
+    padding-left: calc(50vw - 120px);
+    padding-right: calc(50vw - 120px);
+  }
+  
+  .carousel-card {
+    width: 240px;
+    height: 360px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+}
+
+/* --------------------------------------------------------------------------
+   18. Lightbox Modal Styles
+   -------------------------------------------------------------------------- */
+.lightbox-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 10000;
-  pointer-events: none;
-  mix-blend-mode: difference;
+  background-color: rgba(9, 9, 9, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
 }
 
-.cursor-dot {
+.lightbox-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-modal.open .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-content img {
+  width: auto;
+  height: auto;
+  max-width: 75vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.lightbox-close {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background-color: var(--text-color);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s;
-  will-change: transform;
+  top: 2rem;
+  right: 2.5rem;
+  font-size: 3rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  z-index: 100000;
 }
 
-.cursor-circle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 24px;
-  border: 1.5px solid var(--text-color);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s, border-color 0.3s;
-  will-change: width, height, transform;
+.lightbox-close:hover {
+  color: var(--text-color);
+  transform: scale(1.1);
 }
-
-/* Hover active scaling state over interactive items */
-.custom-cursor.hovered .cursor-dot {
-  width: 0px;
-  height: 0px;
-}
-
-.custom-cursor.hovered .cursor-circle {
-  width: 48px;
-  height: 48px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.95);
-}
-
-@media (max-width: 768px) {
-  /* Hide custom cursor on touch/mobile devices for native touch feel and performance */
-  .custom-cursor {
-    display: none !important;
-  }
-}
-
-
-
-

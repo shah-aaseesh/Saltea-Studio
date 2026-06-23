@@ -9,18 +9,13 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/index.css">
 </head>
 <body class="about-page-body">
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor">
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-  </div>
 
   <!-- Interactive gaseous background -->
   <canvas id="about-bg-canvas" class="about-bg-canvas"></canvas>
@@ -37,6 +32,7 @@
       </a>
       <div class="nav-links">
         <a href="index.html#work" class="nav-link" id="nav-services">Services</a>
+        <a href="video-editing.html" class="nav-link" id="nav-video">Video Editing</a>
         <a href="about.html" class="nav-link active" id="nav-about">About us</a>
         <a href="index.html#contact" class="nav-link" id="nav-talk">Let's Talk</a>
       </div>
@@ -55,6 +51,7 @@
     <div class="mobile-menu-content">
       <div class="mobile-menu-links">
         <a href="index.html#work" class="mobile-menu-link">Services</a>
+        <a href="video-editing.html" class="mobile-menu-link">Video Editing</a>
         <a href="about.html" class="mobile-menu-link">About us</a>
         <a href="index.html#contact" class="mobile-menu-link">Let's Talk</a>
       </div>
@@ -122,23 +119,23 @@
       <div class="timeline-path-svg-container">
         <svg class="timeline-path-svg" viewBox="0 0 100 800" preserveAspectRatio="none" fill="none">
           <defs>
-            <linearGradient id="timeline-orange-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#ff7f32" />
-              <stop offset="50%" stop-color="#ff4500" />
-              <stop offset="100%" stop-color="#e65c00" />
+            <linearGradient id="timeline-silver-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="50%" stop-color="#e2e2e8" />
+              <stop offset="100%" stop-color="#8e8e93" />
             </linearGradient>
             <!-- Drop shadow glow filter for the timeline tracker node -->
             <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff5e00" flood-opacity="0.8" />
-              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#ffae00" flood-opacity="1" />
+              <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.8" />
+              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#e2e2e8" flood-opacity="1" />
             </filter>
           </defs>
           <!-- Main connecting path with gradient stroke -->
-          <path class="timeline-path-dotted" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="url(#timeline-orange-grad)" stroke-width="2" stroke-dasharray="6,8" stroke-linecap="round" />
+          <path class="timeline-path-dotted" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="url(#timeline-silver-grad)" stroke-width="2" stroke-dasharray="6,8" stroke-linecap="round" />
           <!-- Animated path tracker -->
-          <path class="timeline-path-fill" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="#ff5e00" stroke-width="3" stroke-linecap="round" />
+          <path class="timeline-path-fill" d="M 50 0 Q 75 100 50 200 T 50 400 T 50 600 T 50 800" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
           <!-- Pulsing glow circle node riding along path -->
-          <circle class="timeline-glow-node" cx="-20" cy="-20" r="6" fill="#ff5e00" filter="url(#glow-filter)" />
+          <circle class="timeline-glow-node" cx="-20" cy="-20" r="6" fill="#ffffff" filter="url(#glow-filter)" />
         </svg>
       </div>
 
@@ -230,10 +227,14 @@
 
   <!-- Footer Section -->
   <footer class="about-footer">
-    <div class="section-container">
+    <div class="section-container" style="padding-top: 0;">
       <hr class="footer-divider">
       <div class="footer-bottom">
         <p class="copyright">&copy; Saltea Studio 2026. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
         <p class="attribution">Made by Aashish</p>
       </div>
     </div>

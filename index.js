@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimelineScrollDrawing();
   initAboutBgCanvas();
   initCollageParallax();
-  initCustomCursor();
 });
 
 /* --------------------------------------------------------------------------
@@ -1164,7 +1163,7 @@ function initAboutBgCanvas() {
       vx: 0.15,
       vy: 0.22,
       r: 320,
-      color: 'rgba(255, 94, 0, 0.08)' // soft orange matching theme accent
+      color: 'rgba(226, 226, 232, 0.06)' // soft silver glow
     },
     {
       x: Math.random() * window.innerWidth,
@@ -1172,7 +1171,7 @@ function initAboutBgCanvas() {
       vx: -0.22,
       vy: 0.15,
       r: 450,
-      color: 'rgba(80, 50, 255, 0.08)' // soft purple/blue matching premium dark theme
+      color: 'rgba(200, 200, 220, 0.05)' // soft gray-silver glow
     },
     {
       x: Math.random() * window.innerWidth,
@@ -1180,7 +1179,7 @@ function initAboutBgCanvas() {
       vx: 0.18,
       vy: -0.18,
       r: 380,
-      color: 'rgba(255, 30, 150, 0.07)' // soft magenta/pink glow
+      color: 'rgba(255, 255, 255, 0.04)' // soft white glow
     }
   ];
 
@@ -1253,66 +1252,6 @@ function initCollageParallax() {
   handleScroll();
 }
 
-/* --------------------------------------------------------------------------
-   15. About Us: Custom Magnetic Blend Cursor
-   -------------------------------------------------------------------------- */
-function initCustomCursor() {
-  const cursor = document.querySelector('.custom-cursor');
-  if (!cursor) return;
-
-  const dot = cursor.querySelector('.cursor-dot');
-  const circle = cursor.querySelector('.cursor-circle');
-
-  if (!dot || !circle) return;
-
-  let targetX = 0;
-  let targetY = 0;
-  let circleX = 0;
-  let circleY = 0;
-
-  // Track position immediately
-  window.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-  }, { passive: true });
-
-  // Hide/Show cursor when leaving/entering viewport window
-  document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-  });
-
-  document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
-  });
-
-  // Lerping render loop for smooth trailing ring
-  const updateCursor = () => {
-    dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
-
-    circleX += (targetX - circleX) * 0.16;
-    circleY += (targetY - circleY) * 0.16;
-    circle.style.transform = `translate3d(${circleX}px, ${circleY}px, 0) translate(-50%, -50%)`;
-
-    requestAnimationFrame(updateCursor);
-  };
-  
-  requestAnimationFrame(updateCursor);
-
-  // Setup scale-up snap hovered triggers
-  const hoverTargets = document.querySelectorAll(
-    'a, button, .tag-chip, .timeline-card, .collage-item, .id-badge-card, .spinning-flower-icon'
-  );
-
-  hoverTargets.forEach(target => {
-    target.addEventListener('mouseenter', () => {
-      cursor.classList.add('hovered');
-    });
-
-    target.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hovered');
-    });
-  });
-}
 
 
 

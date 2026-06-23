@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Editing | Saltea Studio</title>
+  <meta name="description" content="We shape rhythm, pacing, and flow, so every video feels intentional, engaging, and aligned with the brand behind it.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body class="video-editing-page">
+
+
+  <!-- Background Gaseous Light -->
+  <canvas id="video-bg-canvas" class="about-bg-canvas"></canvas>
+
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="currentColor"/>
+        </svg>
+        <span>SALTEA STUDIO</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#work" class="nav-link" id="nav-services">Services</a>
+        <a href="video-editing.html" class="nav-link active" id="nav-video">Video Editing</a>
+        <a href="about.html" class="nav-link" id="nav-about">About us</a>
+        <a href="index.html#contact" class="nav-link" id="nav-talk">Let's Talk</a>
+      </div>
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-links">
+        <a href="index.html#work" class="mobile-menu-link">Services</a>
+        <a href="video-editing.html" class="mobile-menu-link">Video Editing</a>
+        <a href="about.html" class="mobile-menu-link">About us</a>
+        <a href="index.html#contact" class="mobile-menu-link">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="video-hero section-container reveal-on-scroll">
+    <div class="video-hero-header">
+      <h1 class="video-hero-title">
+        Video Editing
+        <span class="video-hero-subtitle">We don't just cut footage.</span>
+      </h1>
+      <!-- Spinning Gear/Star Accent -->
+      <div class="star-accent-wrapper">
+        <div class="spinning-star-accent">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M50 0C52.8 0 55 2.2 55 5V18.3C60.2 19.3 65.1 21.5 69.4 24.8L78.8 15.4C80.8 13.4 84 13.4 86 15.4C88 17.4 88 20.6 86 22.6L76.6 32C79.9 36.3 82.1 41.2 83.1 46.4H95C97.8 46.4 100 48.6 100 51.4C100 54.2 97.8 56.4 95 56.4H83.1C82.1 61.6 79.9 66.5 76.6 70.8L86 80.2C88 82.2 88 85.4 86 87.4C84 89.4 80.8 89.4 78.8 87.4L69.4 78C65.1 81.3 60.2 83.5 55 84.5V95C55 97.8 52.8 100 50 100C47.2 100 45 97.8 45 95V84.5C39.8 83.5 34.9 81.3 30.6 78L21.2 87.4C19.2 89.4 16 89.4 14 87.4C12 85.4 12 82.2 14 80.2L23.4 70.8C20.1 66.5 17.9 61.6 16.9 56.4H5C2.2 56.4 0 54.2 0 51.4C0 48.6 2.2 46.4 5 46.4H16.9C17.9 41.2 20.1 36.3 23.4 32L14 22.6C12 20.6 12 17.4 14 15.4C16 13.4 19.2 13.4 21.2 15.4L30.6 24.8C34.9 21.5 39.8 19.3 45 18.3V5C45 2.2 47.2 0 50 0ZM50 35C41.7 35 35 41.7 35 50C35 58.3 41.7 65 50 65C58.3 65 65 58.3 65 50C65 41.7 58.3 35 50 35Z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <div class="video-hero-desc">
+      <p>We shape rhythm, pacing, and flow, so every video feels intentional, engaging, and aligned with the brand behind it.</p>
+    </div>
+  </section>
+
+  <!-- Interactive Card Carousel Section -->
+  <section class="video-carousel-section">
+    <div class="carousel-container" id="carousel-container">
+      <div class="carousel-track" id="carousel-track">
+        
+        <!-- Card 1 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_street_scene.png" alt="Dynamic city footage frame">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_holds.png" alt="Holds typography design">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_india_map.png" alt="Highlighted India state map">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_interview_woman.png" alt="Documentary interview frame">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_chef_pouring.png" alt="Chef pouring culinary details">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="carousel-card">
+          <div class="card-inner">
+            <img src="/public/images/card_food_plate.png" alt="Gourmet food plating frame">
+            <div class="card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Grid Section -->
+  <section class="video-info-section section-container reveal-on-scroll">
+    <div class="info-grid">
+      <div class="info-block" id="info-what">
+        <h2 class="info-title">What we edit</h2>
+        <p class="info-desc">Short-form & reels, campaign videos, long-form, cases.</p>
+      </div>
+      <div class="info-block" id="info-how">
+        <h2 class="info-title">How we add value</h2>
+        <p class="info-desc">Narrative & pacing, sound design, motion graphics, color.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="video-cta-section reveal-on-scroll">
+    <div class="section-container">
+      <div class="cta-outline-title">
+        LET THE STORY <br> DO THE TALKING
+      </div>
+      
+      <div class="cta-offer">
+        <h3 class="cta-question">Have footage or an idea?</h3>
+        <p class="cta-sub">Let's shape it into something clear, engaging, and effective</p>
+        <a href="mailto:hello@salteastudio.com" class="cta-button" id="btn-video-contact">LET'S TALK</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="video-footer">
+    <div class="section-container" style="padding-top: 0;">
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; Saltea Studio 2026. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="attribution">Made by Aashish</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Expanded media" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/video-editing.js"></script>
+</body>
+</html>
